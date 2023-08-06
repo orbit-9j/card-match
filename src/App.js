@@ -209,31 +209,34 @@ function App() {
           </div>
           <div className="colour-group">
             <h2>Same colour groups</h2>
-            <div className="card-container">
-              {/* temp cards for visuals: */}
-              {exampleSameColourJoker.map((card) => (
-                <Card
-                  key={card[2]}
-                  number={card[0]}
-                  colour={card[1]}
-                  id={card[2]}
-                  selectedCards={selectedCards}
-                  setSelectedCards={setSelectedCards}
-                />
-              ))}
+            <div>
+              <div className="card-container">
+                {/* temp cards for visuals: */}
+                {exampleSameColourJoker.map((card) => (
+                  <Card
+                    key={card[2]}
+                    number={card[0]}
+                    colour={card[1]}
+                    id={card[2]}
+                    selectedCards={selectedCards}
+                    setSelectedCards={setSelectedCards}
+                  />
+                ))}
+              </div>
+              <div className="card-container">
+                {colourGroup.map((card) => (
+                  <Card
+                    key={card[2]}
+                    number={card[0]}
+                    colour={card[1]}
+                    id={card[2]}
+                    selectedCards={selectedCards}
+                    setSelectedCards={setSelectedCards}
+                  />
+                ))}
+              </div>
             </div>
-            <div className="card-container">
-              {colourGroup.map((card) => (
-                <Card
-                  key={card[2]}
-                  number={card[0]}
-                  colour={card[1]}
-                  id={card[2]}
-                  selectedCards={selectedCards}
-                  setSelectedCards={setSelectedCards}
-                />
-              ))}
-            </div>
+
             <button onClick={handleAddGroup}>Add group</button>
           </div>
           {/* //--------------------------------------HAND------------------------------------- */}
@@ -258,6 +261,25 @@ function App() {
       {/* //--------------------------------------RULES------------------------------------- */}
       <section className="rules container">
         <h2>Rules</h2>
+
+        <h3>Game contents</h3>
+        <div className="card-section">
+          <div className="rule-card">
+            <p>There are 106 cards in total: 104 number cards and 2 jokers.</p>
+          </div>
+          <div className="rule-card">
+            <p>The number cards are numbered 1-13.</p>
+          </div>
+          <div className="rule-card">
+            <p>
+              There are 4 colours of numbered cards:{" "}
+              <span className="green">green</span>,{" "}
+              <span className="orange">orange</span>,{" "}
+              <span className="purple">purple</span>, and{" "}
+              <span className="white">white</span>.
+            </p>
+          </div>
+        </div>
 
         <h3>Interactivity</h3>
         <div className="card-section">

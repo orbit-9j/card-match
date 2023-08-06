@@ -14,6 +14,12 @@
   @include center;
 }
 
+@mixin card {
+  background-color: $card;
+  padding: $medium;
+  border-radius: $xSmall;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -84,6 +90,8 @@ button {
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.3);
+
+    cursor: pointer;
   }
 }
 
@@ -97,9 +105,9 @@ button {
 
   &::before {
     @include overlay;
-    border-radius: $small;
+    border-radius: $xSmall;
     z-index: -1;
-    filter: blur($medium);
+    filter: blur($small);
     padding: $xSmall;
   }
 }
@@ -146,7 +154,7 @@ button {
   .game-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $large;
+    gap: $medium;
   }
 
   &::before {
@@ -158,7 +166,18 @@ button {
   }
 
   h2 {
-    border-bottom: 0.1563rem solid black;
+    //border-bottom: 0.1563rem solid black;
+    margin-bottom: 0;
+  }
+
+  .number-group,
+  .colour-group,
+  .hand {
+    @include card;
+    display: grid;
+    grid-column: 1fr;
+    grid-row: auto;
+    gap: $small;
   }
 
   .number-group,
@@ -168,9 +187,15 @@ button {
       margin-bottom: $small;
     }
   }
-
+  button {
+    align-self: end;
+  }
   .hand {
     grid-column: span 2;
+
+    button {
+      align-self: stretch;
+    }
   }
 }
 
@@ -231,6 +256,12 @@ button {
     border-bottom: 0.1563rem solid black;
   }
 
+  span {
+    background-color: black;
+    padding: 0 $xSmall;
+    border-radius: $xSmall;
+  }
+
   .card-section .rule-card {
     &:not(:last-child) {
       margin-bottom: $medium;
@@ -251,10 +282,8 @@ button {
     margin-bottom: $medium;
   }
   .rule-card {
-    background-color: rgba(255, 255, 255, 0.1);
+    @include card;
     font-size: 1.1rem;
-    padding: $medium;
-    border-radius: $xSmall;
 
     .or {
       text-align: center;
@@ -294,4 +323,25 @@ button {
       }
     }
   }
+}
+
+//chrome, safari, edge
+body::-webkit-scrollbar {
+  width: $small; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: $card; /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3); /* color of the scroll thumb */
+  border-radius: $small; /* roundness of the scroll thumb */
+  border: 0 solid; /* creates padding around scroll thumb */
+}
+
+//firefox
+body {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: $card rgba(255, 255, 255, 0.3); /* scroll thumb and track */
 }
